@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
-import WithClass from "../../hoc/withClass";
+import React, { useEffect, useRef } from "react";
+// import withClass from "../../hoc/withClass";
 // import classes from "./Cockpit.css";
 
 const cockpit = props => {
+	const toggleBtnRef = useRef(null);
+
 	useEffect(() => {
 		console.log("[Cockpit.js] useEffect");
-		const timer = setTimeout(() => {
-			alert("Saved data to cloud");
-		}, 1000);
+		// const timer = setTimeout(() => {
+		// 	alert("Saved data to cloud");
+		// }, 1000);
+		toggleBtnRef.current.click();
 		return () => {
-			clearTimeout(timer);
+			// clearTimeout(timer);
 			console.log("[Cockpit.js] cleanup work in useEffect");
 		};
 	}, []);
@@ -44,13 +47,13 @@ const cockpit = props => {
 	}
 
 	return (
-		<React.Fragment>
+		<div className={classes.Cockpit}>
 			<h1>{props.title}</h1>
 			<p className={classes.join(" ")}>This is really working!</p>
-			<button style={style} onClick={props.clicked}>
+			<button ref={toggleBtnRef} style={style} onClick={props.clicked}>
 				Toggle Persons
 			</button>
-		</React.Fragment>
+		</div>
 	);
 };
 
