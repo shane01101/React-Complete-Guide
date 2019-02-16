@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import Auxillary from "../../../hoc/Auxillary";
+import withClass from "../../../hoc/withClass";
+import classes from "./Person.css";
 
 class Person extends Component {
 	render() {
@@ -10,7 +13,7 @@ class Person extends Component {
 				<p key="i1" onClick={this.props.click}>
 					I'm {this.props.name} and I am {this.props.age} years old!
 				</p>
-				,<p key="i2">{this.props.children}</p>,
+				<p key="i2">{this.props.children}</p>
 				<input
 					key="i3"
 					type="text"
@@ -22,4 +25,11 @@ class Person extends Component {
 	}
 }
 
-export default Person;
+Person.propTypes = {
+	click: PropTypes.func,
+	name: PropTypes.string,
+	age: PropTypes.number,
+	changed: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);
